@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as BooksRouteImport } from './routes/books'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicReturnsRouteImport } from './routes/api/public/returns'
+import { Route as ApiPublicBookingsRouteImport } from './routes/api/public/bookings'
+import { Route as ApiPublicBooksAvailableRouteImport } from './routes/api/public/books/available'
 
 const BooksRoute = BooksRouteImport.update({
   id: '/books',
@@ -22,31 +25,74 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicReturnsRoute = ApiPublicReturnsRouteImport.update({
+  id: '/api/public/returns',
+  path: '/api/public/returns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBookingsRoute = ApiPublicBookingsRouteImport.update({
+  id: '/api/public/bookings',
+  path: '/api/public/bookings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBooksAvailableRoute = ApiPublicBooksAvailableRouteImport.update({
+  id: '/api/public/books/available',
+  path: '/api/public/books/available',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/books': typeof BooksRoute
+  '/api/public/bookings': typeof ApiPublicBookingsRoute
+  '/api/public/returns': typeof ApiPublicReturnsRoute
+  '/api/public/books/available': typeof ApiPublicBooksAvailableRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/books': typeof BooksRoute
+  '/api/public/bookings': typeof ApiPublicBookingsRoute
+  '/api/public/returns': typeof ApiPublicReturnsRoute
+  '/api/public/books/available': typeof ApiPublicBooksAvailableRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/books': typeof BooksRoute
+  '/api/public/bookings': typeof ApiPublicBookingsRoute
+  '/api/public/returns': typeof ApiPublicReturnsRoute
+  '/api/public/books/available': typeof ApiPublicBooksAvailableRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/books'
+  fullPaths:
+    | '/'
+    | '/books'
+    | '/api/public/bookings'
+    | '/api/public/returns'
+    | '/api/public/books/available'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/books'
-  id: '__root__' | '/' | '/books'
+  to:
+    | '/'
+    | '/books'
+    | '/api/public/bookings'
+    | '/api/public/returns'
+    | '/api/public/books/available'
+  id:
+    | '__root__'
+    | '/'
+    | '/books'
+    | '/api/public/bookings'
+    | '/api/public/returns'
+    | '/api/public/books/available'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BooksRoute: typeof BooksRoute
+  ApiPublicBookingsRoute: typeof ApiPublicBookingsRoute
+  ApiPublicReturnsRoute: typeof ApiPublicReturnsRoute
+  ApiPublicBooksAvailableRoute: typeof ApiPublicBooksAvailableRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,13 +111,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/returns': {
+      id: '/api/public/returns'
+      path: '/api/public/returns'
+      fullPath: '/api/public/returns'
+      preLoaderRoute: typeof ApiPublicReturnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bookings': {
+      id: '/api/public/bookings'
+      path: '/api/public/bookings'
+      fullPath: '/api/public/bookings'
+      preLoaderRoute: typeof ApiPublicBookingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/books/available': {
+      id: '/api/public/books/available'
+      path: '/api/public/books/available'
+      fullPath: '/api/public/books/available'
+      preLoaderRoute: typeof ApiPublicBooksAvailableRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BooksRoute: BooksRoute,
+  ApiPublicBookingsRoute: ApiPublicBookingsRoute,
+  ApiPublicReturnsRoute: ApiPublicReturnsRoute,
+  ApiPublicBooksAvailableRoute: ApiPublicBooksAvailableRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
