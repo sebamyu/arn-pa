@@ -14,7 +14,83 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          book_id: string
+          borrow_date: string
+          borrower_name: string
+          created_at: string
+          id: string
+          return_date: string
+          returned_at: string | null
+        }
+        Insert: {
+          book_id: string
+          borrow_date: string
+          borrower_name: string
+          created_at?: string
+          id?: string
+          return_date: string
+          returned_at?: string | null
+        }
+        Update: {
+          book_id?: string
+          borrow_date?: string
+          borrower_name?: string
+          created_at?: string
+          id?: string
+          return_date?: string
+          returned_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_book_id_fkey"
+            columns: ["book_id"]
+            isOneToOne: false
+            referencedRelation: "books"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      books: {
+        Row: {
+          author: string
+          category: string
+          code: string
+          cover_emoji: string
+          created_at: string
+          description: string
+          gradient: string
+          id: string
+          is_trending: boolean
+          title: string
+        }
+        Insert: {
+          author?: string
+          category: string
+          code: string
+          cover_emoji?: string
+          created_at?: string
+          description?: string
+          gradient?: string
+          id?: string
+          is_trending?: boolean
+          title: string
+        }
+        Update: {
+          author?: string
+          category?: string
+          code?: string
+          cover_emoji?: string
+          created_at?: string
+          description?: string
+          gradient?: string
+          id?: string
+          is_trending?: boolean
+          title?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
