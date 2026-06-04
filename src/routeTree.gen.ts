@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as BooksRouteImport } from './routes/books'
+import { Route as ApiDocsRouteImport } from './routes/api-docs'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicReturnsRouteImport } from './routes/api/public/returns'
 import { Route as ApiPublicBookingsRouteImport } from './routes/api/public/bookings'
@@ -18,6 +19,11 @@ import { Route as ApiPublicBooksAvailableRouteImport } from './routes/api/public
 const BooksRoute = BooksRouteImport.update({
   id: '/books',
   path: '/books',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDocsRoute = ApiDocsRouteImport.update({
+  id: '/api-docs',
+  path: '/api-docs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,6 +49,7 @@ const ApiPublicBooksAvailableRoute = ApiPublicBooksAvailableRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api-docs': typeof ApiDocsRoute
   '/books': typeof BooksRoute
   '/api/public/bookings': typeof ApiPublicBookingsRoute
   '/api/public/returns': typeof ApiPublicReturnsRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api-docs': typeof ApiDocsRoute
   '/books': typeof BooksRoute
   '/api/public/bookings': typeof ApiPublicBookingsRoute
   '/api/public/returns': typeof ApiPublicReturnsRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api-docs': typeof ApiDocsRoute
   '/books': typeof BooksRoute
   '/api/public/bookings': typeof ApiPublicBookingsRoute
   '/api/public/returns': typeof ApiPublicReturnsRoute
@@ -67,6 +76,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/api-docs'
     | '/books'
     | '/api/public/bookings'
     | '/api/public/returns'
@@ -74,6 +84,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/api-docs'
     | '/books'
     | '/api/public/bookings'
     | '/api/public/returns'
@@ -81,6 +92,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/api-docs'
     | '/books'
     | '/api/public/bookings'
     | '/api/public/returns'
@@ -89,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiDocsRoute: typeof ApiDocsRoute
   BooksRoute: typeof BooksRoute
   ApiPublicBookingsRoute: typeof ApiPublicBookingsRoute
   ApiPublicReturnsRoute: typeof ApiPublicReturnsRoute
@@ -102,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/books'
       fullPath: '/books'
       preLoaderRoute: typeof BooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api-docs': {
+      id: '/api-docs'
+      path: '/api-docs'
+      fullPath: '/api-docs'
+      preLoaderRoute: typeof ApiDocsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -137,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiDocsRoute: ApiDocsRoute,
   BooksRoute: BooksRoute,
   ApiPublicBookingsRoute: ApiPublicBookingsRoute,
   ApiPublicReturnsRoute: ApiPublicReturnsRoute,
