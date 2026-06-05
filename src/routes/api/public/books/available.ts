@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -12,9 +11,10 @@ export const Route = createFileRoute("/api/public/books/available")({
     handlers: {
       OPTIONS: async () => new Response(null, { status: 204, headers: CORS }),
       GET: async () => {
+        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
         const { data: books, error } = await supabaseAdmin
           .from("books")
-          .select("id, code, title, author, category, description, is_trending")
+          .select('id, code, title, author, category, description, is_trending, "imageUrl"')
           .order("code", { ascending: true });
         if (error) {
           return new Response(JSON.stringify({ success: false, message: error.message }), {
