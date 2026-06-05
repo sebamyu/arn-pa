@@ -1,0 +1,2 @@
+UPDATE public.books SET title = 'Naruto', "imageUrl" = 'https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg' WHERE code = 'BK-SEM';
+UPDATE public.books SET title = 'Attack on Titan', "imageUrl" = 'https://upload.wikimedia.org/wikipedia/en/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg' WHERE code = 'BK-HSK';
