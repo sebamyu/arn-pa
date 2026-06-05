@@ -101,9 +101,8 @@ export function BookCard({
         )}
 
         {showFallback && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 z-0">
-            <span className="text-6xl drop-shadow-md">{book.cover_emoji}</span>
-            <span className="text-[10px] font-medium text-white/80 px-2 text-center line-clamp-1">
+          <div className="absolute inset-0 flex items-center justify-center p-3 z-0">
+            <span className="text-base md:text-lg font-bold text-white text-center drop-shadow-md line-clamp-4">
               {book.title}
             </span>
           </div>
