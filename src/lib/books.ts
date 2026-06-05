@@ -8,6 +8,7 @@ export type Book = {
   gradient: string;
   description: string;
   is_trending: boolean;
+  imageUrl?: string; // <-- เพิ่มบรรทัดนี้ เพื่อรองรับ URL รูปภาพ
 };
 
 export type Booking = {
