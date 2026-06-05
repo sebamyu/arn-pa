@@ -23,15 +23,15 @@ function HomePage() {
       {/* Hero */}
       <section className="relative">
         <div className="glass-strong rounded-[2rem] p-8 md:p-14 text-center overflow-hidden animate-fade-up">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 text-xs font-semibold text-purple-700 shadow-sm">
+          {/* <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 text-xs font-semibold text-purple-700 shadow-sm">
             <Sparkles className="h-3.5 w-3.5" />
             จองหนังสือ Real-Time
-          </div>
+          </div> */}
           <h1 className="mt-5 text-4xl md:text-6xl font-extrabold tracking-tight">
             <span className="gradient-text">อ่านปะ</span>
           </h1>
           <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            จองการ์ตูน มังงะ มันฮวา และนิยายเรื่องโปรดของคุณ
+            จองหนังสือการ์ตูน มังงะ มันฮวา และนิยายเรื่องโปรดของคุณได้แล้ววันนี้
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link

@@ -15,12 +15,17 @@ export function SiteHeader() {
       <div className="mx-auto mt-3 max-w-6xl px-3">
         <div className="glass-strong flex items-center justify-between rounded-2xl px-4 py-2.5">
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-pink-300 to-purple-300 text-white shadow-md group-hover:scale-110 transition-transform">
-              <BookHeart className="h-5 w-5" />
-            </div>
+            
+            {/* 📍 เปลี่ยนโลโก้เป็นรูปภาพตรงนี้ครับ */}
+            <img 
+              src="/logo.jpg" 
+              alt="อ่านปะ โลโก้" 
+              className="h-10 w-10 rounded-full object-cover shadow-sm border-2 border-purple-200 group-hover:scale-110 transition-transform" 
+            />
+            
             <div className="leading-tight">
-              <div className="text-lg font-extrabold gradient-text">อ่านปะ</div>
-              <div className="text-[10px] text-muted-foreground">จองหนังสือเรียลไทม์</div>
+              <div className="text-lg font-extrabold gradient-text">Arn Pa อ่านปะ</div>
+              <div className="text-[10px] text-muted-foreground">จองปุ๊บ ได้อ่านปั๊บ</div>
             </div>
           </Link>
           <nav className="flex items-center gap-1">

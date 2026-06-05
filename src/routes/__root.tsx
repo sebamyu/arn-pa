@@ -16,6 +16,10 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { BackgroundFx } from "@/components/BackgroundFx";
 import { Toaster } from "@/components/ui/sonner";
 
+// 📍 เพิ่มการเรียกใช้งานคอมโพเนนต์แชทบอทและลูกเล่นบับเบิ้ลลอย
+import { BotnoiChat } from "@/components/BotnoiChat";
+import { FloatingEffects } from "@/components/FloatingEffects";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
@@ -112,6 +116,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <BackgroundFx />
+      
+      {/* เรียกใช้งานลูกเล่นบับเบิ้ลลอยฟุ้ง */}
+      <FloatingEffects />
+
       <div className="flex min-h-screen flex-col">
         <SiteHeader />
         <main className="flex-1">
@@ -120,6 +128,10 @@ function RootComponent() {
         <SiteFooter />
       </div>
       <Toaster position="top-center" richColors />
+      
+      {/* เรียกใช้งาน BotnoiChat */}
+      <BotnoiChat />
+      
     </QueryClientProvider>
   );
 }
