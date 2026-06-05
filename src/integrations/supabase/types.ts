@@ -62,6 +62,7 @@ export type Database = {
           description: string
           gradient: string
           id: string
+          imageUrl: string | null
           is_trending: boolean
           title: string
         }
@@ -74,6 +75,7 @@ export type Database = {
           description?: string
           gradient?: string
           id?: string
+          imageUrl?: string | null
           is_trending?: boolean
           title: string
         }
@@ -86,6 +88,7 @@ export type Database = {
           description?: string
           gradient?: string
           id?: string
+          imageUrl?: string | null
           is_trending?: boolean
           title?: string
         }
