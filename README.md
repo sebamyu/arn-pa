@@ -47,7 +47,7 @@
 ---
 
 ## 👨‍💻 Developed with Passion by
-**[ชื่อของคุณ]**
+**[Orapin Nakoon]**
 *Full-Stack Intern @ Botnoi Group*
 
 <div align="center">
